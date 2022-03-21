@@ -1,9 +1,6 @@
 async function getAllPhotographers () {
-  const gitHubPagesURL = "https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json";
-  const localURL = "../../data/photographers.json";
-  const relevantURL = window.location.href.indexOf("github.io") > -1 ? gitHubPagesURL : localURL;
   // eslint-disable-next-line no-undef
-  const photographerApi = new PhotographerApi(relevantURL);
+  const photographerApi = new PhotographerApi();
   return await photographerApi.getAllPhotographers();
 }
 

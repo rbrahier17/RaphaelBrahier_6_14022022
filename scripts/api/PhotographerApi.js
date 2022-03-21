@@ -1,11 +1,14 @@
 
 // eslint-disable-next-line no-unused-vars
 class PhotographerApi {
-  /**
-   * @param {string} url
-   */
-  constructor (url) {
-    this._url = url;
+  constructor () {
+    this._url = this.getURL();
+  }
+
+  getURL () {
+    const gitHubPagesURL = "https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json";
+    const localURL = "../../data/photographers.json";
+    return window.location.href.indexOf("github.io") > -1 ? gitHubPagesURL : localURL;
   }
 
   async get () {

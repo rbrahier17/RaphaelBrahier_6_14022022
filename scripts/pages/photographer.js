@@ -87,7 +87,7 @@ function loader (loading) {
 async function init () {
   loader(true);
   const photographerId = getPhotographerId();
-  const photographerApi = new PhotographerApi("../../data/photographers.json");
+  const photographerApi = new PhotographerApi();
   const photographer = await photographerApi.getOnePhotographer(photographerId);
   const photographerLikes = await photographerApi.getPhotographerLikes(photographerId);
   const medias = await photographerApi.getMedias(photographerId);
