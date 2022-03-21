@@ -1,6 +1,7 @@
 async function getAllPhotographers () {
+  // Data is retrieved from the file hosted on GitHub for compatibility with deployment on Git Hub Pages and to simulate a real API.
   // eslint-disable-next-line no-undef
-  const photographerApi = new PhotographerApi();
+  const photographerApi = new PhotographerApi("https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json");
   return await photographerApi.getAllPhotographers();
 }
 
@@ -15,9 +16,21 @@ async function displayData (photographers) {
   });
 };
 
+function loader (loading) {
+  const contentElements = document.querySelectorAll("header , main");
+  const loader = document.querySelector(".loader");
+  contentElements.forEach(function (el) { el.style.opacity = "0"; });
+  if (!loading) {
+    contentElements.forEach(function (el) { el.style.opacity = "1"; });
+    loader.style.display = "none";
+  }
+}
+
 async function init () {
+  loader(true);
   const photographers = await getAllPhotographers();
   displayData(photographers);
+  loader(false);
 };
 
 init();

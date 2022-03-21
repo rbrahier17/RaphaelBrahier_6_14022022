@@ -87,7 +87,8 @@ function loader (loading) {
 async function init () {
   loader(true);
   const photographerId = getPhotographerId();
-  const photographerApi = new PhotographerApi();
+  // Data is retrieved from the file hosted on GitHub for compatibility with deployment on Git Hub Pages and to simulate a real API.
+  const photographerApi = new PhotographerApi("https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json");
   const photographer = await photographerApi.getOnePhotographer(photographerId);
   const photographerLikes = await photographerApi.getPhotographerLikes(photographerId);
   const medias = await photographerApi.getMedias(photographerId);
