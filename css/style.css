@@ -2,22 +2,6 @@
 
 @import url("photographer.css");
 
-header,
-main {
-    opacity: 0;
-}
-
-.loader {
-    position: absolute;
-    left: 50vw;
-    top: 50vh;
-    transform: translate(-50%, -50%);
-}
-
-.loader img {
-    width: 150px;
-}
-
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
