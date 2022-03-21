@@ -15,21 +15,9 @@ async function displayData (photographers) {
   });
 };
 
-function loader (loading) {
-  const contentElements = document.querySelectorAll("header , main");
-  const loader = document.querySelector(".loader");
-  contentElements.forEach(function (el) { el.style.opacity = "0"; });
-  if (!loading) {
-    contentElements.forEach(function (el) { el.style.opacity = "1"; });
-    loader.style.display = "none";
-  }
-}
-
 async function init () {
-  loader(true);
   const photographers = await getAllPhotographers();
   displayData(photographers);
-  setTimeout(() => loader(false), 100); // 100ms security delay
 };
 
 init();
