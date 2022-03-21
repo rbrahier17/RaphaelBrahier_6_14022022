@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!--FONT-->
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <title>Fisheye</title>
+    <!--API-->
+    <script defer src="scripts/api/PhotographerApi.js"></script>
+    <!--FACTORY-->
+    <script defer src="scripts/factories/photographer.js"></script>
+    <!--PAGE-->
+    <script defer src="scripts/pages/index.js"></script>
   </head>
+
   <body>
+    <div class="loader">
+      <img src="assets/images/logo.png"  alt="Fisheye Logo" />
+    </div>
+    
     <header>
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+        <a href="index.html">
+          <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+        </a>
         <h1>Nos photographes</h1>
     </header>
+
     <main id="main">
-        <div class="photographer_section"></div>
+        <section class="photographer_section"></section>
     </main>
-    <script src="scripts/models/Photographer.js"></script>
-    <script src="scripts/templates/PhotographerCard.js"></script>
-    <script src="scripts/api/Api.js"></script>
-    <script src="scripts/pages/index.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
   </body>
 </html>

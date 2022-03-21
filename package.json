@@ -1,0 +1,26 @@
+{
+  "name": "front-end-fisheye",
+  "version": "1.0.0",
+  "description": "Openclassrooms project",
+  "main": "/scripts/pages/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbrahier17/RaphaelBrahier_6_14022022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rbrahier17/RaphaelBrahier_6_14022022/issues"
+  },
+  "homepage": "https://github.com/rbrahier17/RaphaelBrahier_6_14022022#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0"
+  }
+}

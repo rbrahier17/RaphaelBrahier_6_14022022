@@ -1,21 +1,90 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
+    <!--FONT-->
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <!--API-->
+    <script defer src="/scripts/api/PhotographerApi.js"></script>
+    <!--FACTORY-->
+    <script defer src="scripts/factories/media.js"></script>
+    <!--CONTACT FORM-->
+    <script defer src="/scripts/utils/contactForm.js"></script>
+    <!--CUSTOM SELECT MENU-->
+    <script defer src="/scripts/utils/customSelect.js"></script>
+    <!--SORTER-->
+    <script defer src="/scripts/sorters/MainSorter.js"></script>
+    <!--PAGE-->
+    <script defer src="/scripts/pages/photographer.js"></script>
+    <!--LIGHTBOX-->
+    <script defer src="/scripts/utils/lightbox.js"></script>
   </head>
+
   <body>
+
+    <div class="loader">
+      <img src="assets/images/logo.png"  alt="Fisheye Logo" />
+    </div>
+
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+      </a>
     </header>
+
     <main id="main">
       <div class="photograph-header">
+        <div>
+          <h1></h1>
+          <p class="localisation"></p>
+          <p class="tagline"></p>
+        </div>
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <img />
       </div>
+
+      <div class="dropdown" role="listbox">
+        <label for="dropdown__list" id="dropdown__label">Trier par</label>
+        <div class="dropdown__container">
+          <button aria-haspopup="listbox" aria-labelledby="dropdown__label">
+            <span></span>
+            <img src="./assets/icons/chevron-down.svg"/>
+          </button>
+          <ul id="dropdown__list" role="listbox">
+            <li role="option" id="popularity">Popularité</li>
+            <li role="option" id="date">Date</li>
+            <li role="option" id="title">Titre</li>
+          </ul>
+        </div>
+      </div>
+
+      <section class="media_section"></section>
+
+      <div class="bottom-info-container">
+        <span class="total-likes">
+          <span class="total-likes-counter"></span>
+          <img src="./assets/icons/heart-solid-black.svg" alt="likes"/>
+        </span>
+        <span class="daily-rate"></span>
+      </div>
+
+      <div class="lightbox">
+        <button class="lightbox-close"><img src='./assets/icons/x-mark.svg' /></button>
+        <a class="lightbox-prev"><img src="./assets/icons/chevron-down-red.svg" /></a>
+        <a class="lightbox-next"><img src="./assets/icons/chevron-down-red.svg" /></a>
+        <div class="lightbox-container">
+          <img />
+        </div>
+      </div>
+      
+
+      
     </main>
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -31,6 +100,7 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
+
   </body>
+
 </html>
