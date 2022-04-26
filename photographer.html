@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -14,90 +14,117 @@
     <script defer src="scripts/factories/media.js"></script>
     <!--CONTACT FORM-->
     <script defer src="/scripts/utils/contactForm.js"></script>
-    <!--CUSTOM SELECT MENU-->
-    <script defer src="/scripts/utils/customSelect.js"></script>
     <!--SORTER-->
     <script defer src="/scripts/sorters/MainSorter.js"></script>
-    <!--PAGE-->
-    <script defer src="/scripts/pages/photographer.js"></script>
+    <!--CUSTOM SELECT MENU-->
+    <script defer src="/scripts/utils/customSelect.js"></script>
     <!--LIGHTBOX-->
     <script defer src="/scripts/utils/lightbox.js"></script>
+    <!--PAGE-->
+    <script defer src="/scripts/pages/photographer.js"></script>
   </head>
 
   <body>
 
-    <div class="loader">
-      <img src="assets/images/logo.png"  alt="Fisheye Logo" />
+    <div class="main-wrapper" aria-hidden="false">
+
+      <header>
+        <a href="index.html">
+          <img src="assets/images/logo.png" class="logo" alt="Fisheye Logo - Home page" />
+        </a>
+      </header>
+
+      <main id="main">
+        <div class="photograph-header" role="banner">
+          <div>
+            <h1></h1>
+            <p class="localisation"></p>
+            <p class="tagline"></p>
+          </div>
+          <button class="openContactBtn">Contactez-moi</button>
+          <img alt=""/>
+        </div>
+
+        <div class="dropdown" role="listbox">
+          <label for="dropdown__list" id="dropdown__label">Trier par</label>
+          <div class="dropdown__container">
+            <button 
+              aria-controls="dropdown__list"
+              aria-haspopup="listbox" 
+              aria-expanded="false" 
+              aria-labelledby="dropdown__label"
+              role="combobox"
+              >
+              <span></span>
+              <img src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true"/>
+            </button>
+            <ul id="dropdown__list" role="listbox">
+              <li role="option" id="popularity">Popularité</li>
+              <li role="option" id="date">Date</li>
+              <li role="option" id="title">Titre</li>
+            </ul>
+          </div>
+        </div>
+
+        <section class="media_section"></section>
+
+        <div class="bottom-info-container">
+          <span class="total-likes">
+            <span class="total-likes-counter"></span>
+            <img src="./assets/icons/heart-solid-black.svg" alt="Likes"/>
+          </span>
+          <span class="daily-rate"></span>
+        </div>
+        
+      </main>
     </div>
 
-    <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
-      </a>
-    </header>
+    <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <button class="closeBtn">
+        <img src='./assets/icons/x-mark.svg' aria-hidden="true" alt="" />
+        <span class="visually-hidden">Fermer la boite de dialogue</span>
+      </button>
+      <button class="prevMedia">
+        <img src="./assets/icons/chevron-down-red.svg" aria-hidden="true" alt=""/>
+        <span class="visually-hidden">Média précédent</span>
+      </button>
+      <figure class="mediaContainer">
+        <figcaption class="mediaTitle"></figcaption>
+      </figure>
+      <button class="nextMedia">
+        <img src="./assets/icons/chevron-down-red.svg" aria-hidden="true" alt=""/>
+        <span class="visually-hidden">Média suivant</span>
+      </button>
+    </div>
 
-    <main id="main">
-      <div class="photograph-header">
-        <div>
-          <h1></h1>
-          <p class="localisation"></p>
-          <p class="tagline"></p>
-        </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-        <img />
-      </div>
-
-      <div class="dropdown" role="listbox">
-        <label for="dropdown__list" id="dropdown__label">Trier par</label>
-        <div class="dropdown__container">
-          <button aria-haspopup="listbox" aria-labelledby="dropdown__label">
-            <span></span>
-            <img src="./assets/icons/chevron-down.svg"/>
-          </button>
-          <ul id="dropdown__list" role="listbox">
-            <li role="option" id="popularity">Popularité</li>
-            <li role="option" id="date">Date</li>
-            <li role="option" id="title">Titre</li>
-          </ul>
-        </div>
-      </div>
-
-      <section class="media_section"></section>
-
-      <div class="bottom-info-container">
-        <span class="total-likes">
-          <span class="total-likes-counter"></span>
-          <img src="./assets/icons/heart-solid-black.svg" alt="likes"/>
-        </span>
-        <span class="daily-rate"></span>
-      </div>
-
-      <div class="lightbox">
-        <button class="lightbox-close"><img src='./assets/icons/x-mark.svg' /></button>
-        <a class="lightbox-prev"><img src="./assets/icons/chevron-down-red.svg" /></a>
-        <a class="lightbox-next"><img src="./assets/icons/chevron-down-red.svg" /></a>
-        <div class="lightbox-container">
-          <img />
-        </div>
-      </div>
-      
-
-      
-    </main>
-
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog" aria-modal="true" aria-hidden="true">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2>
+            Contactez-moi <br />
+          </h2>
+          <button class="closeBtn">
+            <img src="assets/icons/close.svg" aria-hidden="true" alt=""/>
+            <span class="visually-hidden">Fermer la boite de dialogue</span>
+          </button>
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="firstName">Prénom</label>
+						<input type="text" id="firstName" pattern="[^0-9]*" required aria-required="true" aria-invalid="true" />
+
+            <label for="lastName" >Nom</label>
+						<input type="text" id="lastName" pattern="[^0-9]*" required aria-required="true" aria-invalid="true"/>
+
+            <label for="email">Email</label>
+						<input type="email" id="email" required aria-required="true" aria-invalid="true"/>
+
+            <label for="message">Votre message</label>
+						<textarea id="message"></textarea>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <input type="submit" value="Envoyer" class="contact_button submit">
 				</form>
+        <p class="submitConfirmation">Votre demande de contact à été soumise avec succès !</p>
 			</div>
 		</div>
 

@@ -2,11 +2,15 @@
 
 /**
  *
- * @returns { string } The photographer's id contained in URL
+ * @returns { string } The photographer's id
  */
 function getPhotographerId () {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("id");
+  if (window.location.href.indexOf(".github.io") > -1) {
+    return localStorage.getItem("photographerId");
+  } else {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("id");
+  }
 }
 
 function setPhotographHeader (photographer) {
@@ -54,51 +58,18 @@ function updateTotalLikes (action) {
   else if (action === "DEC") totalLikesCounter.innerText = currentTotal -= 1;
 }
 
-function handleSort () {
-  let sorter;
-  options.forEach(option => {
-    option.addEventListener("click", function () {
-      switch (option.id) {
-        case "popularity":
-          sorter = new PopularitySorter();
-          break;
-        case "title":
-          sorter = new TitleSorter();
-          break;
-        case "date":
-          sorter = new DateSorter();
-          break;
-      }
-      const sortedMedias = sorter.sort();
-      sorter.reorderMedias(sortedMedias);
-    });
-  });
-}
-
-function loader (loading) {
-  const contentElements = document.querySelectorAll("header , main");
-  const loader = document.querySelector(".loader");
-  if (!loading) {
-    contentElements.forEach(function (el) { el.style.opacity = "1"; });
-    loader.style.display = "none";
-  }
-}
-
 async function init () {
-  loader(true);
   const photographerId = getPhotographerId();
-  // Data is retrieved from the file hosted on GitHub for compatibility with deployment on Git Hub Pages and to simulate a real API.
-  const photographerApi = new PhotographerApi("https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json");
+  const photographerApi = new PhotographerApi();
   const photographer = await photographerApi.getOnePhotographer(photographerId);
   const photographerLikes = await photographerApi.getPhotographerLikes(photographerId);
   const medias = await photographerApi.getMedias(photographerId);
   setPhotographHeader(photographer);
   setBottomInfo(photographer, photographerLikes);
   displayMedias(medias, photographer.name);
-  handleSort();
-  setTimeout(() => loader(false), 100); // 100ms security delay
-
-  lightbox();
+  initLightbox();
+  initContactForm(photographer.name);
+  new PopularitySorter().sort(); // Init sort
 }
 
 init();

@@ -24,32 +24,38 @@ function mediaFactory (data, photographerName) {
     const article = document.createElement("article");
     const link = document.createElement("a");
     const p = document.createElement("p");
-    const span1 = document.createElement("span");
+    const headline = document.createElement("h2");
     const divLikes = document.createElement("div");
     const span2 = document.createElement("span");
+    const btnLike = document.createElement("button");
     const icon = document.createElement("img");
+    const accessibleBtnContent = document.createElement("span");
 
     // Set attributes
     article.setAttribute("id", media.id);
     article.setAttribute("data-date", media.date);
     link.setAttribute("href", "#");
     link.setAttribute("aria-label", media.title);
-    span1.setAttribute("class", "title");
+    headline.setAttribute("class", "title");
     divLikes.setAttribute("class", "likes-container");
     span2.setAttribute("class", "likes-counter");
     icon.setAttribute("class", "likes-icon");
-    icon.setAttribute("alt", "likes");
+    icon.setAttribute("alt", "Likes");
     icon.setAttribute("src", "assets/icons/heart-solid-red.svg");
+    accessibleBtnContent.setAttribute("class", "visually-hidden btnLike-accessible");
 
     // Set textual content
-    span1.textContent = media.title;
+    headline.textContent = media.title;
     span2.textContent = media.likes;
+    accessibleBtnContent.textContent = "Ajouter un like";
 
     // Append childs
     article.appendChild(link);
-    p.appendChild(span1);
+    p.appendChild(headline);
+    btnLike.appendChild(icon);
+    btnLike.appendChild(accessibleBtnContent);
     divLikes.appendChild(span2);
-    divLikes.appendChild(icon);
+    divLikes.appendChild(btnLike);
     p.appendChild(divLikes);
     article.appendChild(p);
 
@@ -58,7 +64,7 @@ function mediaFactory (data, photographerName) {
     if (isMediaImage) {
       const img = document.createElement("img");
       img.setAttribute("src", mediaSrc);
-      img.setAttribute("alt", "");
+      img.setAttribute("alt", media.title);
       link.appendChild(img);
     }
 
@@ -68,6 +74,7 @@ function mediaFactory (data, photographerName) {
       const span = document.createElement("span");
       video.setAttribute("src", mediaSrc);
       video.setAttribute("preload", "metadata");
+      video.setAttribute("title", media.title);
       div.setAttribute("class", "video-container");
       span.setAttribute("class", "play-video-icon");
       div.appendChild(video);
@@ -81,6 +88,7 @@ function mediaFactory (data, photographerName) {
   function likeMedia (mediaCardDOM) {
     const likesContainer = mediaCardDOM.querySelector(".likes-container");
     const likesCounter = mediaCardDOM.querySelector(".likes-counter");
+    const btnLikesAccessibleContent = mediaCardDOM.querySelector(".btnLike-accessible");
 
     let mediaIsLiked = false;
 
@@ -91,12 +99,14 @@ function mediaFactory (data, photographerName) {
         likesContainer.classList.add("media-is-liked");
         updateTotalLikes("INC");
         mediaIsLiked = true;
+        btnLikesAccessibleContent.textContent = "Retirer un like";
       } else if (mediaIsLiked) {
         media.likes -= 1;
         likesCounter.innerText = media.likes;
         likesContainer.classList.remove("media-is-liked");
         updateTotalLikes("DEC");
         mediaIsLiked = false;
+        btnLikesAccessibleContent.textContent = "Ajouter un like";
       }
     });
   }

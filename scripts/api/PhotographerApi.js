@@ -1,11 +1,9 @@
 
 // eslint-disable-next-line no-unused-vars
 class PhotographerApi {
-  /**
-   * @param {string} url
-   */
-  constructor (url) {
-    this._url = url;
+  constructor () {
+    // Data is retrieved from the file hosted on GitHub to simulate a real API.
+    this._url = "https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json";
   }
 
   async get () {

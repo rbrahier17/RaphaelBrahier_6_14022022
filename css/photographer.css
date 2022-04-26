@@ -1,11 +1,28 @@
+/* 
+
+TODO:
+ FEEDBACK AU HOVER SUR LES ELEMENTS CLIQUABLES 
+*/
+
+
 
 main {
     margin: 20px 100px 0 100px;
 }
 
+html {
+    position: relative;
+}
+
 
 #contact_modal {
     display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    z-index: 10;
+    background: rgba(196, 196, 196, 0.4);
 }
 
 .photograph-header {
@@ -15,8 +32,8 @@ main {
     border-radius: 5px;
 }
 
-.contact_button {
-    font-size: 20px;
+.openContactBtn {
+    font-size: 1.25em;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -32,27 +49,35 @@ main {
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
+    height: 865px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+    padding: 0 35px 35px 35px;
+    margin: 69px auto 0 auto;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+    height: auto;
+    margin: 15px 0 25px 0;
 }
 
-.modal header img {
+.modal header button {
+    background: none;
+    border: none;
+    align-self: flex-start;
+    margin-top: 21px;
     cursor: pointer;
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 4em;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+    margin: 0;
 }
 
 form {
@@ -64,7 +89,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 2.25em;
 }
 
 form div {
@@ -75,11 +100,29 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+form input,
+form textarea {
     width: 100%;
-    height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 1.5625em;
+}
+
+form input {
+    height: 68px;
+}
+
+form textarea {
+    height: 170px;
+    resize: none;
+    font-family: "DM Sans", sans-serif;
+}
+
+.submitConfirmation {
+    display: none;
+    font-size: 2.5em;
+    text-align: center;
+    margin: auto;
 }
 
 .photograph-header {
@@ -91,7 +134,7 @@ form input {
 
 .photograph-header h1 {
     color: #D3573C;
-    font-size: 64px;
+    font-size: 4em;
     margin: 0;
 }
 
@@ -104,12 +147,12 @@ form input {
 .photograph-header .localisation {
     margin: 0;
     color: #901C1C;
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 .photograph-header .tagline {
     color: #525252;
-    font-size: 18px;
+    font-size: 1.125em;
 }
 
 .photograph-header img {
@@ -148,8 +191,15 @@ form input {
 
 .media_section > article p {
     color: #901C1C;
-    font-size: 24px;
+    font-size: 1.5em;
     display: flex;
+    margin-top: 5px;
+}
+
+.media_section > article p > h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 400;
 }
 
 .media_section > article .likes-container {
@@ -161,19 +211,31 @@ form input {
     cursor: pointer;
 }
 
+.media_section > article .likes-container button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-left: 6px;
+}
+
+.media_section > article .likes-container button:focus {
+    outline-color: red;
+}
 
 .media_section > article div .likes-icon {
     width: 22px;
     height: 22px;
-    margin-left: 6px;
     transform: translateY(-1px)
 }
+
 
 .media_section > article .media-is-liked::after {
     display: block;
     position: absolute;
-    right: 4px;
-    top: -2px;
+    right: 10px;
+    top: 6px;
     content: url("../assets/icons/check-solid.svg");
     width: 12px;
 }
@@ -203,7 +265,7 @@ form input {
     right: 0;
     margin: 0 36px 0 0;
     border-radius: 5px 5px 0 0;
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: 600;
     display: flex;
     justify-content: space-around;
@@ -219,7 +281,7 @@ form input {
 .dropdown {
     position: absolute;
     display: flex;
-    font-size: 18px;
+    font-size: 1.125em;
     font-weight: bold;
     line-height: 23px;
     z-index: 5;
@@ -244,7 +306,7 @@ form input {
     border-radius: 5px 5px 0 0;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 1.125em;
     font-weight: bold;
     line-height: 23px;
     font-family: "DM Sans";
@@ -262,12 +324,18 @@ form input {
 #dropdown__list {
     height: 0;
     visibility: hidden;
+    display: none;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
+#dropdown__list li:first-child {
+    display: none;
+}
+
 #dropdown__list.open {
+    display: block;
     visibility: visible;
     height: 114px;
 }
@@ -286,7 +354,7 @@ form input {
 }
 
 
-.bordered::after {
+#dropdown__list li:nth-child(2)::after {
     position: absolute;
     left: 10px;
     height: 56px;
@@ -303,11 +371,12 @@ form input {
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.9);
     display: none;
+    z-index: 2000;
 }
 
-.lightbox-close {
+.lightbox > .closeBtn {
     width: 42px;
     background: none;
     border: none;
@@ -317,33 +386,55 @@ form input {
     cursor: pointer;
 }
 
-.lightbox-prev,
-.lightbox-next {
-    width: 29.64px;
-    height: 48px;
+.lightbox > .prevMedia, 
+.lightbox > .nextMedia {
     position: fixed;
     top: calc(50% - 24px);
+    z-index: 1000;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-.lightbox-prev {
+.lightbox > .prevMedia > img, 
+.lightbox > .nextMedia > img {
+    width: 29.64px;
+    height: 48px;
+}
+
+.lightbox > .prevMedia {
     transform: rotate(90deg);
     left: 45px;
 }
 
-.lightbox-next {
+.lightbox > .nextMedia {
     transform: rotate(-90deg);
     right: 45px;
 }
 
-.lightbox-container {
+.lightbox > .mediaContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    max-width: 80vw;
+    margin: 0 auto;
 }
 
-.lightbox-container img {
+.lightbox > .mediaContainer :first-child {
     display: block;
-    max-width: 80vw;
-    max-height: 90vh;
+    max-width: 100%;
+    max-height: 80vh;
+}
+
+.lightbox > .mediaContainer video {
+    width: 100%;
+}
+
+.lightbox .mediaTitle {
+    color: #901C1C;
+    font-size: 1.5em;
+    font-weight: 400;
+    margin: 12px 0 0 0;
 }

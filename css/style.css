@@ -2,18 +2,11 @@
 
 @import url("photographer.css");
 
+html {
+    font-size: 100%; 
+ }
+ 
 
-
-.loader {
-    position: absolute;
-    left: 50vw;
-    top: 50vh;
-    transform: translate(-50%, -50%);
-}
-
-.loader img {
-    width: 150px;
-}
 
 body {
     font-family: "DM Sans", sans-serif;
@@ -27,28 +20,41 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 90px;
+    margin-top: 23px;
 }
 
 h1 {
     color: #901C1C;
     margin-right: 100px;
-    font-size: 36px;
+    font-size: 2.25em;
     font-weight: 400;
 }
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px
+}
+
 
 .logo {
     height: 50px;
     margin-left: 100px;
 }
 
-.photographer_section {
+#photographers {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
 }
 
-.photographer_section article {
+#photographers article {
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -57,7 +63,7 @@ h1 {
     text-align: center;
 }
 
-.photographer_section article img {
+#photographers article img {
     height: 200px;
     width: 200px;
     object-fit: cover;
@@ -65,19 +71,19 @@ h1 {
     box-shadow: 3px 3px 20px 1px #ececec;
 }
 
-.photographer_section article a {
+#photographers article a {
     text-decoration: none;
 }
 
-.photographer_section article h2 {
+#photographers article h2 {
     color: #D3573C;
     margin: 15px auto 0 auto;
-    font-size: 36px;
+    font-size: 2.25em;
     font-weight: 400;
     text-align: center;
 }
 
-.photographer_section article p {
+#photographers article p {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -85,18 +91,18 @@ h1 {
 }
 
 
-.photographer_section article p .localisation {
+#photographers article p .localisation {
     color: #901C1C;
-    font-size: 13px;
+    font-size: 0.8125em;
     margin-bottom: 3px;
 }
 
-.photographer_section article p .tagline {
-    font-size: 10px;
+#photographers article p .tagline {
+    font-size: 0.625em;
     margin-bottom: 3px;
 }
 
-.photographer_section article p .daily-rate {
+#photographers article p .daily-rate {
     color: #757575;
-    font-size: 9px;
+    font-size: 0.5625em;
 }

@@ -6,7 +6,7 @@ async function getAllPhotographers () {
 }
 
 async function displayData (photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector("#photographers");
 
   photographers.forEach((photographer) => {
     // eslint-disable-next-line no-undef
@@ -16,21 +16,22 @@ async function displayData (photographers) {
   });
 };
 
-function loader (loading) {
-  const contentElements = document.querySelectorAll("header , main");
-  const loader = document.querySelector(".loader");
-  contentElements.forEach(function (el) { el.style.opacity = "0"; });
-  if (!loading) {
-    contentElements.forEach(function (el) { el.style.opacity = "1"; });
-    loader.style.display = "none";
-  }
+function gitHubPagesRedirection () {
+  const photographersLinks = document.querySelectorAll("#photographers article a");
+  photographersLinks.forEach(link => link.addEventListener("click", function (e) {
+    e.preventDefault();
+    const id = link.href.split("?id=")[1];
+    localStorage.setItem("photographerId", id);
+    window.location.href = "photographer.html";
+  }));
 }
 
 async function init () {
-  loader(true);
   const photographers = await getAllPhotographers();
   displayData(photographers);
-  loader(false);
+  if (window.location.href.indexOf(".github.io") > -1) {
+    gitHubPagesRedirection();
+  }
 };
 
 init();

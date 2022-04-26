@@ -4,12 +4,8 @@ class Sorter {
     this.medias = document.querySelectorAll(".media_section article");
   }
 
-  sort (option) {
-    return this.sortMedias(option);
-  }
-
-  reorderMedias (sortedMedias) {
-    sortedMedias.forEach(mediaElement => this.mediasSection.appendChild(mediaElement));
+  sort () {
+    return this.sortMedias().forEach(mediaElement => this.mediasSection.appendChild(mediaElement));
   }
 }
 
