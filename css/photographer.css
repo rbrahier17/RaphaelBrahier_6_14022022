@@ -180,6 +180,11 @@ form textarea {
     width: 350px;
 }
 
+.media_section > article a {
+    display: block;
+
+}
+
 
 .media_section > article img,
 .media_section > article video {
@@ -218,27 +223,26 @@ form textarea {
     display: flex;
     justify-content: center;
     margin-left: 6px;
+    position: relative;
 }
 
-.media_section > article .likes-container button:focus {
-    outline-color: red;
-}
 
 .media_section > article div .likes-icon {
     width: 22px;
     height: 22px;
-    transform: translateY(-1px)
+    transform: translateY(-1px);
+    position: relative;
 }
 
-
-.media_section > article .media-is-liked::after {
+.media_section > article .media-is-liked button::after {
     display: block;
     position: absolute;
-    right: 10px;
-    top: 6px;
+    top: 4px;
+    left: 12px;
     content: url("../assets/icons/check-solid.svg");
     width: 12px;
 }
+
 
 .video-container {
     height: 300px;
@@ -293,17 +297,16 @@ form textarea {
     background-color: #911C1C;
     border-radius: 5px;
     color: white;
-    max-width: 170px;
     width: 170px;
-    overflow: hidden;
     box-shadow: 0px 3px 7px 0px #2a29297a;
 }
+
 
 .dropdown  button {
     height: 56px;
     width: 100%;
     background-color: #911C1C;
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px;
     border: none;
     color: white;
     font-size: 1.125em;
@@ -315,6 +318,8 @@ form textarea {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    z-index: 1000;
+    position: relative;
 }
 
 .dropdown  button > img {
@@ -334,10 +339,12 @@ form textarea {
     display: none;
 }
 
+
 #dropdown__list.open {
     display: block;
     visibility: visible;
     height: 114px;
+
 }
 
 #dropdown__list li {
@@ -347,10 +354,12 @@ form textarea {
     cursor: pointer;
     padding: 0 20px;
     width: 130px;
+    background-color: #901C1C;
 }
 
-#dropdown__list li:hover {
-    text-align: center;
+
+#dropdown__list li:nth-child(2):hover::after {
+    display: none;
 }
 
 
@@ -362,6 +371,11 @@ form textarea {
     border-bottom: 1px solid white;
     border-top: 1px solid white;
     width: 150px;
+    z-index: 10;
+}
+
+#dropdown__list li:last-child {
+    border-radius: 0 0 5px 5px;
 }
 
 .lightbox {

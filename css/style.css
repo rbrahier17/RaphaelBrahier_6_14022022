@@ -4,8 +4,28 @@
 
 html {
     font-size: 100%; 
+
  }
- 
+
+a:focus-visible,
+li:focus-visible,
+button:focus-visible,
+video:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    box-shadow: 0px 0px 0px 5px #00e226 !important;
+    border-radius: 2px;
+}
+
+a:hover {
+    filter: brightness(140%);
+}
+
+button:hover,
+li:hover {
+    filter: hue-rotate(180deg);
+}
 
 
 body {
@@ -21,6 +41,10 @@ header {
     align-items: center;
     height: 90px;
     margin-top: 23px;
+}
+
+header a {
+    margin-left: 100px;
 }
 
 h1 {
@@ -44,7 +68,6 @@ h1 {
 
 .logo {
     height: 50px;
-    margin-left: 100px;
 }
 
 #photographers {

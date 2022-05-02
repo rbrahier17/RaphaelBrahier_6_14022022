@@ -6,7 +6,7 @@ function openLightBox () {
     link.addEventListener("click", function (e) {
       if (lightbox.style.display !== "block") {
         const mediaSrc = getTargetedMediaSrc(e.target);
-        const mediaTitle = link.ariaLabel;
+        const mediaTitle = link.getAttribute("aria-label");
         lightbox.style.display = "block";
         mainWrapper.ariaHidden = "true";
         lightbox.ariaHidden = "false";
@@ -105,10 +105,10 @@ function scrollMedias () {
     btn.addEventListener("click", () => {
       btn === btnPrev ? displayNewMedia("prev") : displayNewMedia("next");
     });
-    btn.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") displayNewMedia("prev");
-      else if (e.key === "ArrowRight") displayNewMedia("next");
-    });
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") displayNewMedia("prev");
+    else if (e.key === "ArrowRight") displayNewMedia("next");
   });
 }
 
