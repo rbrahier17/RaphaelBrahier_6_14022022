@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 class Sorter {
   constructor () {
     this.mediasSection = document.querySelector(".media_section");
@@ -11,6 +9,7 @@ class Sorter {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 class TitleSorter extends Sorter {
   sortMedias () {
     const sortedMedias = [...this.medias].sort((a, b) => {
@@ -22,6 +21,7 @@ class TitleSorter extends Sorter {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 class PopularitySorter extends Sorter {
   sortMedias () {
     const sortedMedias = [...this.medias].sort((a, b) => {
@@ -33,6 +33,7 @@ class PopularitySorter extends Sorter {
   }
 }
 
+// eslint-disable-next-line no-unused-vars
 class DateSorter extends Sorter {
   sortMedias () {
     const sortedMedias = [...this.medias].sort((a, b) => {

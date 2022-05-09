@@ -1,8 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-
+// eslint-disable-next-line no-unused-vars
 function mediaFactory (data, photographerName) {
-  let { id, photographerId, title, image, video, likes, date, price } = data;
+  let { id, title, image, video, likes, date } = data;
 
   const isMediaVideo = !!data.video;
   const isMediaImage = !!data.image;
@@ -13,7 +11,6 @@ function mediaFactory (data, photographerName) {
 
   function getMediaCardDOM () {
     // COMMON MEDIAS SETTINGS (FOR ALL TYPES OF MEDIAS)
-
     // Create card elements
     const article = document.createElement("article");
     const link = document.createElement("a");
@@ -53,7 +50,6 @@ function mediaFactory (data, photographerName) {
     article.appendChild(p);
 
     // SPECIFIC MEDIA SETTINGS
-
     if (isMediaImage) {
       link.setAttribute("aria-label", "Ouvrir la lightbox vers l'image intitulée: " + title + ".");
       const img = document.createElement("img");
@@ -92,6 +88,7 @@ function mediaFactory (data, photographerName) {
         likes += 1;
         likesCounter.innerText = likes;
         likesContainer.classList.add("media-is-liked");
+        // eslint-disable-next-line no-undef
         updateTotalLikes("INC");
         mediaIsLiked = true;
         btnLikesAccessibleContent.textContent = "Retirer un like";
@@ -99,6 +96,7 @@ function mediaFactory (data, photographerName) {
         likes -= 1;
         likesCounter.innerText = likes;
         likesContainer.classList.remove("media-is-liked");
+        // eslint-disable-next-line no-undef
         updateTotalLikes("DEC");
         mediaIsLiked = false;
         btnLikesAccessibleContent.textContent = "Ajouter un like";

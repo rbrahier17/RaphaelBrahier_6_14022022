@@ -1,11 +1,8 @@
-
-
 @import url("photographer.css");
 
 html {
-    font-size: 100%; 
-
- }
+  font-size: 100%;
+}
 
 a:focus-visible,
 li:focus-visible,
@@ -13,120 +10,116 @@ button:focus-visible,
 video:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-    outline: none;
-    box-shadow: 0px 0px 0px 5px #00e226 !important;
-    border-radius: 2px;
-    z-index: 1000;
+  outline: none;
+  box-shadow: 0px 0px 0px 5px #00e226 !important;
+  border-radius: 2px;
+  z-index: 1000;
 }
 
 a:hover {
-    filter: brightness(140%);
+  filter: brightness(140%);
 }
 
 button:hover,
 li:hover {
-    filter: hue-rotate(180deg);
+  filter: hue-rotate(180deg);
 }
-
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0 0 120px 0;
+  font-family: "DM Sans", sans-serif;
+  margin: 0 0 120px 0;
 }
 
-
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-    margin-top: 23px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  margin-top: 23px;
 }
 
 header a {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 h1 {
-    color: #901C1C;
-    margin-right: 100px;
-    font-size: 2.25em;
-    font-weight: 400;
+  color: #901c1c;
+  margin-right: 100px;
+  font-size: 2.25em;
+  font-weight: 400;
 }
 
 .visually-hidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
-
 .logo {
-    height: 50px;
+  height: 50px;
 }
 
 #photographers {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
 }
 
 #photographers article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 #photographers article img {
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 3px 3px 20px 1px #ececec;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 3px 3px 20px 1px #ececec;
 }
 
 #photographers article a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #photographers article h2 {
-    color: #D3573C;
-    margin: 15px auto 0 auto;
-    font-size: 2.25em;
-    font-weight: 400;
-    text-align: center;
+  color: #d3573c;
+  margin: 15px auto 0 auto;
+  font-size: 2.25em;
+  font-weight: 400;
+  text-align: center;
 }
 
 #photographers article p {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
 }
 
-
 #photographers article p .localisation {
-    color: #901C1C;
-    font-size: 0.8125em;
-    margin-bottom: 3px;
+  color: #901c1c;
+  font-size: 0.8125em;
+  margin-bottom: 3px;
 }
 
 #photographers article p .tagline {
-    font-size: 0.625em;
-    margin-bottom: 3px;
+  font-size: 0.625em;
+  margin-bottom: 3px;
 }
 
 #photographers article p .daily-rate {
-    color: #757575;
-    font-size: 0.5625em;
+  color: #757575;
+  font-size: 0.5625em;
 }

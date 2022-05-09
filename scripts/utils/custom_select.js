@@ -37,7 +37,7 @@ function addDropdownListeners () {
   });
 }
 
-// Removes event listeners when dropdown is closed avoid event listeners interference problems or problems due to their accumulation
+// Removes event listeners when dropdown is closed to avoid event listeners interference problems or problems due to their accumulation
 function removeDropdownListeners () {
   const options = document.querySelectorAll("#dropdown__list li[role='option']");
   const focusableElements = document.querySelectorAll(".dropdown button, #dropdown__list li:not(:first-child)");
@@ -71,7 +71,7 @@ function switchSortingOption (optionID) {
 // When option is selected, this function reorganizes dropdown list elements, trigger sorting function and close the dropdown list
 function selectOption (e) {
   if (e.key && e.key !== "Enter") {
-    // If event what keyboard event continue only if 'Enter' key was pressed
+    // If event is keyboard event, continue only if 'Enter' key was pressed
     return;
   }
   const option = e.target;
@@ -129,7 +129,8 @@ function closeListWithEscape (e) {
   if ((e.key === "Escape" || e.key === "Esc") && isListOpen) closeDropdown();
 }
 
-function init () {
+// eslint-disable-next-line no-unused-vars
+function initCustomSelect () {
   const btn = document.querySelector(".dropdown button");
   const btnText = document.querySelector(".dropdown button span");
   const options = document.querySelectorAll("#dropdown__list li");
@@ -140,5 +141,3 @@ function init () {
   btn.addEventListener("keydown", (e) => openListWithDownArrow(e));
   document.addEventListener("keydown", (e) => closeListWithEscape(e));
 }
-
-init();

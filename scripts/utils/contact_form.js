@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 function displayModal () {
   const mainWrapper = document.querySelector(".main-wrapper");
   const modal = document.getElementById("contact_modal");
@@ -17,8 +15,8 @@ function displayModal () {
 }
 
 function closeModal (e) {
+  // Allows closing modal with escape key
   if (e !== undefined && e.key && e.key !== "Escape" && e.key !== "Esc") {
-    // Close modal with escape key
     return;
   }
   const mainWrapper = document.querySelector(".main-wrapper");
@@ -34,25 +32,22 @@ function closeModal (e) {
 function keepFocusInModal (e) {
   const modal = document.getElementById("contact_modal");
   const focusableElements = [...modal.querySelectorAll("button, input, textarea")];
-
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
   const isTabPressed = e.key === "Tab";
-
   if (!isTabPressed) {
     return;
   }
-
   if (e.shiftKey) {
     // if shift + tab combination
-    if (document.activeElement === focusableElements[0]) {
-      // if focused is on the first focusable element then focus last focusable element after pressing  shift + tab combination
-      focusableElements[focusableElements.length - 1].focus();
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus();
       e.preventDefault();
     }
   } else {
     // if tab key is pressed
-    if (document.activeElement === focusableElements[focusableElements.length - 1]) {
-      // if focused has reached to last focusable element then focus first focusable element after pressing tab
-      focusableElements[0].focus();
+    if (document.activeElement === lastFocusableElement) {
+      firstFocusableElement.focus();
       e.preventDefault();
     }
   }

@@ -15,7 +15,11 @@ async function displayData (photographers) {
   });
 }
 
-// This function allows to deploy the project on GitHub Pages that doesn't support URL params, instead, it use localStorage.
+/**
+ * This function allows to deploy the project on GitHub Pages that doesn't support URL params.
+ * Instead of URL params, it use localStorage to store photographer Id.
+ * This type of redirection is only used if the project is consulted on GitHub Pages.
+ */
 function gitHubPagesRedirection () {
   const photographersLinks = document.querySelectorAll("#photographers article a");
   photographersLinks.forEach((link) =>

@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
-
 // Returns photographer's Id from URL params
-// If the project is consulted on Git Hub Pages that doesn't support URL params the Id is retrieved from localStorage
+// If the project is consulted on GitHub Pages that doesn't support URL params the Id is retrieved from localStorage
 function getPhotographerId () {
   if (window.location.href.indexOf(".github.io") > -1) {
     return localStorage.getItem("photographerId");
@@ -41,6 +39,7 @@ async function displayMedias (medias, photographerName) {
   const mediaSection = document.querySelector(".media_section");
 
   medias.forEach((media) => {
+    // eslint-disable-next-line no-undef
     const mediaModel = mediaFactory(media, photographerName);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
@@ -58,6 +57,7 @@ function updateTotalLikes (action) {
 
 async function init () {
   const photographerId = getPhotographerId();
+  // eslint-disable-next-line no-undef
   const photographerApi = new PhotographerApi();
   const photographer = await photographerApi.getOnePhotographer(photographerId);
   const photographerLikes = await photographerApi.getPhotographerLikes(photographerId);
@@ -65,9 +65,12 @@ async function init () {
   setPhotographHeader(photographer);
   setBottomInfo(photographer, photographerLikes);
   displayMedias(medias, photographer.name);
+  /* eslint-disable no-undef */
   initLightbox();
   initContactForm(photographer.name);
+  initCustomSelect();
   new PopularitySorter().sort(); // Initiate sort by sorting medias by popularity (number of likes)
+  /* eslint-enable no-undef */
 }
 
 init();

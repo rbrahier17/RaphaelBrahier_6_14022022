@@ -33,23 +33,25 @@ function getTargetedMediaSrc (target) {
 function keepFocusInLightbox (e) {
   const lightbox = document.querySelector(".lightbox");
   const focusableElements = [...lightbox.querySelectorAll(".closeBtn, .prevMedia, video, .nextMedia")];
+  const firstFocusableElement = focusableElements[0];
+  const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-  focusableElements.forEach(el => {
+  focusableElements.forEach((el) => {
     el.addEventListener("keydown", function (e) {
       const isTabPressed = e.key === "Tab";
-
       if (!isTabPressed) {
         return;
       }
-
-      if (e.shiftKey) { // if shift + tab combination
-        if (document.activeElement === focusableElements[0]) {
-          focusableElements[focusableElements.length - 1].focus();
+      if (e.shiftKey) {
+        // if shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus();
           e.preventDefault();
         }
-      } else { // if tab key is pressed
-        if (document.activeElement === focusableElements[focusableElements.length - 1]) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
-          focusableElements[0].focus();
+      } else {
+        // if tab key is pressed
+        if (document.activeElement === lastFocusableElement) {
+          firstFocusableElement.focus();
           e.preventDefault();
         }
       }
@@ -91,7 +93,7 @@ function displayNewMedia (scrollDirection) {
   const mediaContainer = document.querySelector(".lightbox > .mediaContainer");
   const currentSrc = mediaContainer.firstChild.src;
   const gallery = getGallery();
-  const currentIndex = gallery.findIndex(el => el.mediaSrc === currentSrc);
+  const currentIndex = gallery.findIndex((el) => el.mediaSrc === currentSrc);
   let newIndex;
   if (scrollDirection === "prev") {
     newIndex = currentIndex === 0 ? gallery.length - 1 : currentIndex - 1;
@@ -121,7 +123,7 @@ function scrollMedias () {
 function getGallery () {
   const medias = document.querySelectorAll("article a img, article a video");
   const gallery = [];
-  [...medias].forEach(media => {
+  [...medias].forEach((media) => {
     const mediaTitle = media.tagName === "IMG" ? media.alt : media.title ? media.title : "";
     const mediaSrc = media.src;
     gallery.push({ mediaTitle, mediaSrc });
