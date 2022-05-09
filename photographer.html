@@ -42,28 +42,28 @@
           <img alt="" />
         </div>
 
-        <div class="dropdown" role="listbox">
-          <label for="dropdown__list" id="dropdown__label">Trier par</label>
+        <div class="dropdown">
+          <span id="dropdown__label">Trier par:</span>
           <div class="dropdown__container">
             <button
+              id="dropdown__button"
               aria-controls="dropdown__list"
               aria-haspopup="listbox"
               aria-expanded="false"
-              aria-labelledby="dropdown__label"
-              role="combobox"
+              aria-labelledby="dropdown__label dropdown__button"
             >
               <span></span>
               <img class="arrow-icon" src="./assets/icons/chevron-down.svg" alt="" aria-hidden="true" />
             </button>
-            <ul id="dropdown__list" role="listbox">
-              <li role="option" id="popularity">Popularité</li>
+            <ul id="dropdown__list" role="listbox" aria-labelledby="dropdown__label" tabindex="-1">
+              <li role="option" id="popularity" aria-selected="true">Popularité</li>
               <li role="option" id="date">Date</li>
               <li role="option" id="title">Titre</li>
             </ul>
           </div>
         </div>
 
-        <section class="media_section"></section>
+        <div class="medias_container"></div>
 
         <div class="bottom-info-container">
           <span class="total-likes">

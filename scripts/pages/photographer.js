@@ -36,7 +36,7 @@ function setBottomInfo (photographer, photographerLikes) {
 }
 
 async function displayMedias (medias, photographerName) {
-  const mediaSection = document.querySelector(".media_section");
+  const mediaSection = document.querySelector(".medias_container");
 
   medias.forEach((media) => {
     // eslint-disable-next-line no-undef

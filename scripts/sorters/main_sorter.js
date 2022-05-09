@@ -1,7 +1,7 @@
 class Sorter {
   constructor () {
-    this.mediasSection = document.querySelector(".media_section");
-    this.medias = document.querySelectorAll(".media_section article");
+    this.mediasSection = document.querySelector(".medias_container");
+    this.medias = document.querySelectorAll(".medias_container article");
   }
 
   sort () {

@@ -5,7 +5,10 @@ function mediaFactory (data, photographerName) {
   const isMediaVideo = !!data.video;
   const isMediaImage = !!data.image;
 
-  const mediaSrc = `assets/photographers/media/${photographerName}/${
+  // Replace spaces with underscores because having spaces in src path is not allowed
+  const photographerNameNoSpace = photographerName.split(" ").join("_");
+
+  const mediaSrc = `assets/photographers/media/${photographerNameNoSpace}/${
     isMediaImage ? image : isMediaVideo ? video : null
   }`;
 
@@ -14,7 +17,7 @@ function mediaFactory (data, photographerName) {
     // Create card elements
     const article = document.createElement("article");
     const link = document.createElement("a");
-    const p = document.createElement("p");
+    const bottomDiv = document.createElement("div");
     const headline = document.createElement("h2");
     const divLikes = document.createElement("div");
     const span2 = document.createElement("span");
@@ -41,13 +44,13 @@ function mediaFactory (data, photographerName) {
 
     // Append childs
     article.appendChild(link);
-    p.appendChild(headline);
+    bottomDiv.appendChild(headline);
     btnLike.appendChild(icon);
     btnLike.appendChild(accessibleBtnContent);
     divLikes.appendChild(span2);
     divLikes.appendChild(btnLike);
-    p.appendChild(divLikes);
-    article.appendChild(p);
+    bottomDiv.appendChild(divLikes);
+    article.appendChild(bottomDiv);
 
     // SPECIFIC MEDIA SETTINGS
     if (isMediaImage) {

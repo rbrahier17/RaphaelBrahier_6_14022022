@@ -158,7 +158,7 @@ form textarea {
   position: relative;
 }
 
-.media_section {
+.medias_container {
   display: grid;
   max-width: 100%;
   grid-template-columns: 350px 350px 350px;
@@ -166,36 +166,37 @@ form textarea {
   margin: 100px 0;
 }
 
-.media_section > article {
+.medias_container > article {
   width: 350px;
 }
 
-.media_section > article a {
+.medias_container > article a {
   display: block;
 }
 
-.media_section > article img,
-.media_section > article video {
+.medias_container > article img,
+.medias_container > article video {
   height: 300px;
   width: 350px;
   object-fit: cover;
   border-radius: 5px;
 }
 
-.media_section > article p {
+.medias_container > article > div {
   color: #901c1c;
   font-size: 1.5em;
   display: flex;
   margin-top: 5px;
+  margin-bottom: 35px;
 }
 
-.media_section > article p > h2 {
+.medias_container > article > div > h2 {
   margin: 0;
   font-size: 1.5em;
   font-weight: 400;
 }
 
-.media_section > article .likes-container {
+.medias_container > article .likes-container {
   display: flex;
   align-items: center;
   font-weight: 600;
@@ -204,7 +205,7 @@ form textarea {
   cursor: pointer;
 }
 
-.media_section > article .likes-container button {
+.medias_container > article .likes-container button {
   background-color: white;
   border: none;
   cursor: pointer;
@@ -214,14 +215,14 @@ form textarea {
   position: relative;
 }
 
-.media_section > article div .likes-icon {
+.medias_container > article > div .likes-icon {
   width: 22px;
   height: 22px;
   transform: translateY(-1px);
   position: relative;
 }
 
-.media_section > article .media-is-liked button::after {
+.medias_container > article .media-is-liked button::after {
   display: block;
   position: absolute;
   top: 4px;

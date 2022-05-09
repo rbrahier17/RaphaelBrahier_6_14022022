@@ -74,14 +74,20 @@ function selectOption (e) {
     // If event is keyboard event, continue only if 'Enter' key was pressed
     return;
   }
-  const option = e.target;
+  const selectedOption = e.target;
   const list = document.querySelector("#dropdown__list");
   const options = document.querySelectorAll("#dropdown__list li");
   const btnText = document.querySelector(".dropdown button span");
-  switchSortingOption(option.id); // Trigger sorting
-  btnText.innerText = option.textContent; // Set button textual content to the value of the selected option
-  list.appendChild(option); // Selected option becomes first element of the list
-  [...options].filter((el) => el !== option).forEach((el) => list.appendChild(el)); // Append the other options
+  switchSortingOption(selectedOption.id); // Trigger sorting
+  btnText.innerText = selectedOption.textContent; // Set button textual content to the value of the selected option
+  selectedOption.setAttribute("aria-selected", true);
+  list.appendChild(selectedOption); // Selected option becomes first element of the list
+  [...options]
+    .filter((option) => option !== selectedOption)
+    .forEach((option) => {
+      option.removeAttribute("aria-selected");
+      list.appendChild(option);
+    }); // Append the other options
   toggleDropdown();
 }
 
@@ -116,10 +122,10 @@ function arrowsOptionsNav (e) {
 }
 
 // Allows to open list with down arrow key
-function openListWithDownArrow (e) {
+function openListWithArrows (e) {
   const list = document.querySelector("#dropdown__list");
   const isListOpen = list.classList.contains("open");
-  if (e.key === "ArrowDown" && !isListOpen) openDropdown();
+  if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !isListOpen) openDropdown();
 }
 
 // Allows to close list with escape key
@@ -138,6 +144,6 @@ function initCustomSelect () {
   btnText.innerText = options[0].textContent;
 
   btn.addEventListener("click", toggleDropdown);
-  btn.addEventListener("keydown", (e) => openListWithDownArrow(e));
+  btn.addEventListener("keydown", (e) => openListWithArrows(e));
   document.addEventListener("keydown", (e) => closeListWithEscape(e));
 }
