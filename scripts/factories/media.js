@@ -1,24 +1,18 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 
-// eslint-disable-next-line no-unused-vars
 function mediaFactory (data, photographerName) {
+  let { id, photographerId, title, image, video, likes, date, price } = data;
+
   const isMediaVideo = !!data.video;
   const isMediaImage = !!data.image;
 
-  const media = {
-    id: data.id,
-    photographerId: data.photographerId,
-    title: data.title,
-    mediaUrl: isMediaImage ? data.image : isMediaVideo ? data.video : null,
-    likes: data.likes,
-    date: data.date,
-    price: data.price
-  };
-
-  const mediaSrc = `assets/photographers/media/${photographerName}/${media.mediaUrl}`;
+  const mediaSrc = `assets/photographers/media/${photographerName}/${
+    isMediaImage ? image : isMediaVideo ? video : null
+  }`;
 
   function getMediaCardDOM () {
-    // ALL MEDIAS SETTINGS
+    // COMMON MEDIAS SETTINGS (FOR ALL TYPES OF MEDIAS)
 
     // Create card elements
     const article = document.createElement("article");
@@ -32,10 +26,9 @@ function mediaFactory (data, photographerName) {
     const accessibleBtnContent = document.createElement("span");
 
     // Set attributes
-    article.setAttribute("id", media.id);
-    article.setAttribute("data-date", media.date);
+    article.setAttribute("id", id);
+    article.setAttribute("data-date", date);
     link.setAttribute("href", "#");
-    link.setAttribute("aria-label", media.title);
     headline.setAttribute("class", "title");
     divLikes.setAttribute("class", "likes-container");
     span2.setAttribute("class", "likes-counter");
@@ -45,8 +38,8 @@ function mediaFactory (data, photographerName) {
     accessibleBtnContent.setAttribute("class", "visually-hidden btnLike-accessible");
 
     // Set textual content
-    headline.textContent = media.title;
-    span2.textContent = media.likes;
+    headline.textContent = title;
+    span2.textContent = likes;
     accessibleBtnContent.textContent = "Ajouter un like";
 
     // Append childs
@@ -62,9 +55,10 @@ function mediaFactory (data, photographerName) {
     // SPECIFIC MEDIA SETTINGS
 
     if (isMediaImage) {
+      link.setAttribute("aria-label", "Ouvrir la lightbox vers l'image intitulée: " + title + ".");
       const img = document.createElement("img");
       img.setAttribute("src", mediaSrc);
-      img.setAttribute("alt", media.title);
+      img.setAttribute("alt", title);
       link.appendChild(img);
     }
 
@@ -72,9 +66,10 @@ function mediaFactory (data, photographerName) {
       const div = document.createElement("div");
       const video = document.createElement("video");
       const span = document.createElement("span");
+      link.setAttribute("aria-label", "Ouvrir la lightbox vers la vidéo intitulée: " + title + ".");
       video.setAttribute("src", mediaSrc);
       video.setAttribute("preload", "metadata");
-      video.setAttribute("title", media.title);
+      video.setAttribute("title", title);
       div.setAttribute("class", "video-container");
       span.setAttribute("class", "play-video-icon");
       div.appendChild(video);
@@ -82,7 +77,7 @@ function mediaFactory (data, photographerName) {
       link.appendChild(div);
     }
 
-    return (article);
+    return article;
   }
 
   function likeMedia (mediaCardDOM) {
@@ -94,15 +89,15 @@ function mediaFactory (data, photographerName) {
 
     likesContainer.addEventListener("click", function () {
       if (!mediaIsLiked) {
-        media.likes += 1;
-        likesCounter.innerText = media.likes;
+        likes += 1;
+        likesCounter.innerText = likes;
         likesContainer.classList.add("media-is-liked");
         updateTotalLikes("INC");
         mediaIsLiked = true;
         btnLikesAccessibleContent.textContent = "Retirer un like";
       } else if (mediaIsLiked) {
-        media.likes -= 1;
-        likesCounter.innerText = media.likes;
+        likes -= 1;
+        likesCounter.innerText = likes;
         likesContainer.classList.remove("media-is-liked");
         updateTotalLikes("DEC");
         mediaIsLiked = false;
@@ -111,5 +106,5 @@ function mediaFactory (data, photographerName) {
     });
   }
 
-  return { media, mediaFactory, getMediaCardDOM, likeMedia };
+  return { mediaFactory, getMediaCardDOM, likeMedia };
 }

@@ -1,7 +1,6 @@
 async function getAllPhotographers () {
-  // Data is retrieved from the file hosted on GitHub for compatibility with deployment on Git Hub Pages and to simulate a real API.
   // eslint-disable-next-line no-undef
-  const photographerApi = new PhotographerApi("https://rbrahier17.github.io/RaphaelBrahier_6_14022022/data/photographers.json");
+  const photographerApi = new PhotographerApi();
   return await photographerApi.getAllPhotographers();
 }
 
@@ -14,16 +13,19 @@ async function displayData (photographers) {
     const userCardDOM = photographerModel.getPhotographerCardDOM();
     photographersSection.appendChild(userCardDOM);
   });
-};
+}
 
+// This function allows to deploy the project on GitHub Pages that doesn't support URL params, instead, it use localStorage.
 function gitHubPagesRedirection () {
   const photographersLinks = document.querySelectorAll("#photographers article a");
-  photographersLinks.forEach(link => link.addEventListener("click", function (e) {
-    e.preventDefault();
-    const id = link.href.split("?id=")[1];
-    localStorage.setItem("photographerId", id);
-    window.location.href = "photographer.html";
-  }));
+  photographersLinks.forEach((link) =>
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const id = link.href.split("?id=")[1];
+      localStorage.setItem("photographerId", id);
+      window.location.href = "photographer.html";
+    })
+  );
 }
 
 async function init () {
@@ -32,6 +34,6 @@ async function init () {
   if (window.location.href.indexOf(".github.io") > -1) {
     gitHubPagesRedirection();
   }
-};
+}
 
 init();

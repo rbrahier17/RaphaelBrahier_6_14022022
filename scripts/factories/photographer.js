@@ -20,7 +20,7 @@ function photographerFactory (data) {
 
     // Set attributes
     link.setAttribute("href", linkHREF);
-    link.setAttribute("aria-label", name);
+    link.setAttribute("aria-label", "Visiter la page du photographe: " + name + ".");
     img.setAttribute("src", picture);
     img.setAttribute("alt", "");
     span1.setAttribute("class", "localisation");
@@ -42,7 +42,7 @@ function photographerFactory (data) {
     p.appendChild(span3);
     article.appendChild(p);
 
-    return (article);
+    return article;
   }
-  return { name, linkHREF, localisation, tagline, dailyRate, picture, getPhotographerCardDOM };
+  return { getPhotographerCardDOM };
 }

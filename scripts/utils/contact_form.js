@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+
 function displayModal () {
   const mainWrapper = document.querySelector(".main-wrapper");
   const modal = document.getElementById("contact_modal");
@@ -15,9 +16,9 @@ function displayModal () {
   document.addEventListener("keydown", closeModal);
 }
 
-// eslint-disable-next-line no-unused-vars
 function closeModal (e) {
   if (e !== undefined && e.key && e.key !== "Escape" && e.key !== "Esc") {
+    // Close modal with escape key
     return;
   }
   const mainWrapper = document.querySelector(".main-wrapper");
@@ -40,13 +41,17 @@ function keepFocusInModal (e) {
     return;
   }
 
-  if (e.shiftKey) { // if shift + tab combination
+  if (e.shiftKey) {
+    // if shift + tab combination
     if (document.activeElement === focusableElements[0]) {
+      // if focused is on the first focusable element then focus last focusable element after pressing  shift + tab combination
       focusableElements[focusableElements.length - 1].focus();
       e.preventDefault();
     }
-  } else { // if tab key is pressed
-    if (document.activeElement === focusableElements[focusableElements.length - 1]) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+  } else {
+    // if tab key is pressed
+    if (document.activeElement === focusableElements[focusableElements.length - 1]) {
+      // if focused has reached to last focusable element then focus first focusable element after pressing tab
       focusableElements[0].focus();
       e.preventDefault();
     }
@@ -69,7 +74,14 @@ function logUserDatas () {
     email: document.getElementById("email").value,
     message: document.getElementById("message").value
   };
-  console.log("User contact you with following datas: " + JSON.stringify(userDatas));
+  const photographerName = document.querySelector(".modal h2").innerText.split("Contactez-moi")[1].trim();
+  console.log(
+    `Bonjour ${photographerName}, \n\nVous avez reçu une demande de contact de la part d'un utilisateur Fisheye: \n\nNom: ${
+      userDatas.firstName
+    } ${userDatas.lastName}, \nEmail: ${userDatas.email}, ${
+      userDatas.message ? "\nMessage: " + userDatas.message : ""
+    }\n\nCordialement, L'équipe Fisheye.`
+  );
 }
 
 function submitContactForm () {
@@ -81,6 +93,7 @@ function submitContactForm () {
     form.style.display = "none";
     submitConfirmation.style.display = "block";
     form.reset();
+    document.querySelector("#contact_modal .closeBtn").focus();
   });
 }
 

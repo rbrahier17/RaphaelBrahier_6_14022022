@@ -1,3 +1,5 @@
+// MANAGE THE LIGHTBOX THAT ALLOWS TO SEE PHOTOGRAPHER MEDIAS IN REAL SIZE IN A MODAL BOX
+
 function openLightBox () {
   const mainWrapper = document.querySelector(".main-wrapper");
   const lightbox = document.querySelector(".lightbox");
@@ -6,7 +8,7 @@ function openLightBox () {
     link.addEventListener("click", function (e) {
       if (lightbox.style.display !== "block") {
         const mediaSrc = getTargetedMediaSrc(e.target);
-        const mediaTitle = link.getAttribute("aria-label");
+        const mediaTitle = link.getAttribute("aria-label").split("intitulée: ")[1].split(".")[0]; // Split aria-label value to only retrieve media title
         lightbox.style.display = "block";
         mainWrapper.ariaHidden = "true";
         lightbox.ariaHidden = "false";
@@ -55,6 +57,7 @@ function keepFocusInLightbox (e) {
   });
 }
 
+// Create Media DOM element in the lightbox
 function displayMedia (mediaSrc, mediaTitle) {
   const mediaContainer = document.querySelector(".lightbox > .mediaContainer");
   const mediaTitleNode = document.querySelector(".lightbox .mediaTitle");
@@ -83,6 +86,7 @@ function displayMedia (mediaSrc, mediaTitle) {
   mediaTitleNode.style.width = mediaContainer.firstChild.clientWidth + "px";
 }
 
+// Display previous or next media
 function displayNewMedia (scrollDirection) {
   const mediaContainer = document.querySelector(".lightbox > .mediaContainer");
   const currentSrc = mediaContainer.firstChild.src;
@@ -107,11 +111,13 @@ function scrollMedias () {
     });
   });
   document.addEventListener("keydown", (e) => {
+    if (document.querySelector(".lightbox").style.display !== "block") return; // Return if lightbox is not opened
     if (e.key === "ArrowLeft") displayNewMedia("prev");
     else if (e.key === "ArrowRight") displayNewMedia("next");
   });
 }
 
+// Get all medias with source and title from displayed DOM
 function getGallery () {
   const medias = document.querySelectorAll("article a img, article a video");
   const gallery = [];

@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 
-/**
- *
- * @returns { string } The photographer's id
- */
+// Returns photographer's Id from URL params
+// If the project is consulted on Git Hub Pages that doesn't support URL params the Id is retrieved from localStorage
 function getPhotographerId () {
   if (window.location.href.indexOf(".github.io") > -1) {
     return localStorage.getItem("photographerId");
@@ -48,7 +46,7 @@ async function displayMedias (medias, photographerName) {
     mediaSection.appendChild(mediaCardDOM);
     mediaModel.likeMedia(mediaCardDOM);
   });
-};
+}
 
 // eslint-disable-next-line no-unused-vars
 function updateTotalLikes (action) {
@@ -69,7 +67,7 @@ async function init () {
   displayMedias(medias, photographer.name);
   initLightbox();
   initContactForm(photographer.name);
-  new PopularitySorter().sort(); // Init sort
+  new PopularitySorter().sort(); // Initiate sort by sorting medias by popularity (number of likes)
 }
 
 init();
