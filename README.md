@@ -1,6 +1,8 @@
-# Base de code du projet P6 - Parcours Front-end
+# PROJET N°6 DU PARCOURS OPENCLASSROOMS DÉVELOPPEUR D'APPLICATION - JAVASCRIPT REACT 
 
-## Démarrer le projet
+## TITRE DU PROJET: Créez un site accessible pour une plateforme de photographes
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+Ce projet est hébergé sur [GitHub Pages](https://rbrahier17.github.io/RaphaelBrahier_6_14022022/).
+
+Pour le consulter en local, il suffit d'ouvrir le fichier `index.html`.
 

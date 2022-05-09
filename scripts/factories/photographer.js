@@ -5,7 +5,7 @@ function photographerFactory (data) {
   const picture = `assets/photographers/ID-photo/${portrait}`;
   const localisation = city + ", " + country;
   const dailyRate = price + "€/jour";
-  const linkHREF = "/photographer.html" + "?id=" + id;
+  const linkHREF = "photographer.html" + "?id=" + id;
 
   function getPhotographerCardDOM () {
     // Create card elements
